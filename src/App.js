@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+// import Introduction from "./components/introduction";
+// import Profil from "./components/profil";
 
 function App() {
+  const [pacarSaya, setPacarSaya] = useState(1);
+  const [namaPacar, setNamaPacar] = useState("");
+  const kurangPacar = () => {
+    if (pacarSaya > 1) {
+      setPacarSaya((prev) => prev - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (pacarSaya === 1) {
+      setNamaPacar("si imut");
+    } else{
+      setNamaPacar("cihuyyy")
+    }
+  }, [pacarSaya]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h5>nama pacar: {namaPacar}</h5>
+      <h1>saya memiliki: {pacarSaya} pacar</h1>
+      <button onClick={() => setPacarSaya((prev) => prev + 1)}>
+        tambah pacar
+      </button>
+      <button onClick={kurangPacar}>putuskan pacar</button>
+      {/* <Profil /> */}
+      {/* <Introduction name="faris" />
+      <Introduction name="taranka" /> */}
+    </>
   );
 }
 
